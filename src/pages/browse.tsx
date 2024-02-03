@@ -1,11 +1,12 @@
 import React from "react";
 import ContentRows from "../components/content-rows";
 import { ENDPOINT } from "../common/endpoints";
+import Banner from "../components/Banner";
 
 function Browse() {
   return (
-    <section>
-      <section>Banner Image</section>
+    <section className="absolute top-0">
+      <Banner />
       <ContentRows
         title="New & Popular"
         endpoint={ENDPOINT.MOVIES_POPULAR}

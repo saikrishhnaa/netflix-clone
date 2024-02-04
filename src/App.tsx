@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Layout from "./components/layout";
 import Browse from "./pages/browse";
+import Login from "./pages/login";
 
 function AppRouter() {
   const router = createBrowserRouter(
@@ -17,7 +18,7 @@ function AppRouter() {
             <h1 className="text-3xl font-bold underline">Hello World!</h1>
           }
         />
-        <Route path="/login" element={<h1>login</h1>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/browse" element={<Layout />}>
           <Route index element={<Browse />} />
         </Route>

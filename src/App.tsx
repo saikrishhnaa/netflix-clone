@@ -1,4 +1,6 @@
 import {
+  Navigate,
+  Outlet,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -7,6 +9,16 @@ import {
 import Layout from "./components/layout";
 import Browse from "./pages/browse";
 import Login from "./pages/login";
+import { AuthProvider, useAuth } from "./common/auth";
+import Profile from "./pages/profile";
+
+function ProtectedRoute({ children }: { children: React.ReactElement }) {
+  const { user } = useAuth();
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+  return children;
+}
 
 function AppRouter() {
   const router = createBrowserRouter(
@@ -15,16 +27,21 @@ function AppRouter() {
         <Route
           path="/"
           element={
-            <h1 className="text-3xl font-bold underline">Hello World!</h1>
+            // <ProtectedRoute>
+            <Outlet />
+            // </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<Profile />} />
+          <Route path="ManageProfiles" element={<Profile edit></Profile>} />
+          <Route path="browse" element={<Layout />}>
+            <Route index element={<Browse />} />
+          </Route>
+          <Route path="latest" element={<Layout />}>
+            <Route index element={<h1>Latest</h1>} />
+          </Route>
+        </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/browse" element={<Layout />}>
-          <Route index element={<Browse />} />
-        </Route>
-        <Route path="/latest" element={<Layout />}>
-          <Route index element={<h1>Latest</h1>} />
-        </Route>
       </>,
     ),
   );
@@ -33,5 +50,9 @@ function AppRouter() {
 }
 
 export default function App() {
-  return <AppRouter />;
+  return (
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
+  );
 }

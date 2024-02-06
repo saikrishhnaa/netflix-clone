@@ -9,8 +9,8 @@ type ModalProps = {
   onClose: (value: boolean) => void;
   children: React.ReactElement;
   title: string | ReactElement;
-  closeModal: () => void;
-  position: Position | null;
+  closeModal?: () => void;
+  position?: Position | null;
 };
 
 function Modal({
@@ -23,7 +23,9 @@ function Modal({
 }: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   function onMouseLeave() {
-    closeModal();
+    if (closeModal) {
+      closeModal();
+    }
   }
   return (
     <Transition appear show={isOpen} as={Fragment}>

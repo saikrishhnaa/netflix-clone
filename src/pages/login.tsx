@@ -1,11 +1,21 @@
 import React, { FormEvent } from "react";
 import netflixLogo from "../assets/Netflix_Logo_RGB.png";
+import { useAuth } from "../common/auth";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  function signIn(event: FormEvent) {
-    const { email, password } = event.target as any;
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  async function authenticateUser(event: React.SyntheticEvent) {
+    const { email, password } = event.target as typeof event.target & {
+      email: HTMLInputElement;
+      password: HTMLInputElement;
+    };
     event.preventDefault();
-    console.log(email, password);
+    const user = await signIn(email.value, password.value);
+    if (user) {
+      navigate("/");
+    }
   }
   return (
     <>
@@ -18,7 +28,7 @@ function Login() {
         ></section>
         <section className="absolute inset-0 bg-gradient-to-b from-zinc-900/50"></section>
         <form
-          onSubmit={signIn}
+          onSubmit={authenticateUser}
           className="relative mx-auto min-h-[70vh] w-[450px] rounded-r-lg bg-black/75 p-16"
         >
           <article>
@@ -36,7 +46,7 @@ function Login() {
                 name="password"
                 id="password"
               />
-              <button className="bg-netflixRed my-8 rounded-md p-2 font-semibold">
+              <button className="my-8 rounded-md bg-netflixRed p-2 font-semibold">
                 Sign In
               </button>
             </section>

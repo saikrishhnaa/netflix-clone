@@ -22,7 +22,7 @@ function ContentRows({ title, endpoint }: RowProp) {
   const disableNext = currentPage + 1 === pagesCount;
   async function fetchRowData() {
     const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
-    setRowData(response.results);
+    setRowData(response.results.filter((res) => res.poster_path));
   }
   function nextClick() {
     if (sliderRef.current) {

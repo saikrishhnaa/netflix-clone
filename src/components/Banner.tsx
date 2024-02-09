@@ -12,6 +12,7 @@ import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
 import PlayCircleIcon from "@heroicons/react/16/solid/PlayIcon";
 import InfoIcon from "@heroicons/react/24/outline/InformationCircleIcon";
 import { PlayIcon } from "@heroicons/react/16/solid";
+import Loader from "./loader";
 
 function Banner() {
   const [randomMovie, setRandomMovie] = useState<MovieResult>();
@@ -45,7 +46,7 @@ function Banner() {
     setVideoInfo(videoInfo[0]);
     setTimeout(() => {
       setHidePoster(true);
-    }, 800);
+    }, 1000);
   }
   useEffect(() => {
     fetchPopularMovies();
@@ -87,23 +88,24 @@ function Banner() {
       {showBackdrop ? (
         <section className="absolute left-0 top-0 z-[1] h-full w-full bg-dark/60"></section>
       ) : null}
-      <section className="absolute bottom-16 z-[1] ml-16 max-w-sm flex-col gap-2">
+      <section className="absolute bottom-[20%] z-[1] ml-16 max-w-sm flex-col gap-2">
         <h2 className="text-6xl">{randomMovie.title}</h2>
         <p className="line-clamp-3 text-sm">{randomMovie.overview}</p>
-
         <section className="flex gap-2">
-          <button className="w-{100px} flex items-center rounded-md bg-white p-2 text-dark">
+          <button className="flex w-[100px] items-center justify-center rounded-md bg-white p-2 text-dark">
             <PlayIcon className="h-8 w-8" />
             <span>Play</span>
           </button>
-          <button className="w-{100px} flex items-center rounded-md bg-zinc-400/50 p-2 text-white">
+          <button className="flex w-[150px] items-center justify-center rounded-md bg-zinc-400/50 p-2 text-white">
             <InfoIcon className="h-8 w-8" />
             <span>More Info</span>
           </button>
         </section>
       </section>
     </section>
-  ) : null;
+  ) : (
+    <Loader />
+  );
 }
 
 export default Banner;

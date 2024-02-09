@@ -1,28 +1,20 @@
-import React, { FormEvent, useEffect } from "react";
+import React from "react";
 import netflixLogo from "../assets/Netflix_Logo_RGB.png";
 import { useAuth } from "../common/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
-  const { signIn, user } = useAuth();
+function Registration() {
+  const { signUp, user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user]);
-
-  async function authenticateUser(event: React.SyntheticEvent) {
+  async function registerUser(event: React.SyntheticEvent) {
+    event.preventDefault();
     const { email, password } = event.target as typeof event.target & {
       email: HTMLInputElement;
       password: HTMLInputElement;
     };
-    event.preventDefault();
-    const user = await signIn(email.value, password.value);
-    if (user) {
-      navigate("/");
-    }
+    await signUp(email.value, password.value);
+    navigate("/login");
   }
   return (
     <>
@@ -35,11 +27,11 @@ function Login() {
         ></section>
         <section className="absolute inset-0 bg-gradient-to-b from-zinc-900/50"></section>
         <form
-          onSubmit={authenticateUser}
+          onSubmit={registerUser}
           className="relative mx-auto w-[350px] rounded-r-lg bg-black/75 p-16"
         >
           <article>
-            <h1 className="mb-4 text-4xl text-white">Sign In</h1>
+            <h1 className="mb-4 text-4xl text-white">Sign up</h1>
             <section className="flex flex-col gap-4">
               <input
                 className="rounded-md bg-zinc-500 p-2 text-gray-300 outline-none"
@@ -56,13 +48,13 @@ function Login() {
                 placeholder="Enter password"
               />
               <button className="my-8 rounded-md bg-netflixRed p-2 font-semibold text-white outline-none">
-                Sign In
+                Sign up
               </button>
             </section>
             <p>
-              New to Netflix?{" "}
-              <Link className="text-white" to="/signup">
-                Sign up now
+              Already have an account?{" "}
+              <Link className="text-white" to="/login">
+                Sign in now
               </Link>
             </p>
           </article>
@@ -72,4 +64,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Registration;

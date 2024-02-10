@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect } from "react";
+import React, { useEffect } from "react";
 import netflixLogo from "../assets/Netflix_Logo_RGB.png";
 import { useAuth } from "../common/auth";
 import { Link, useNavigate } from "react-router-dom";

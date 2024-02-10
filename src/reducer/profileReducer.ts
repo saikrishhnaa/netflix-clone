@@ -30,6 +30,7 @@ export default function profileReducer(
         });
         return updatedState;
       }
+      break;
     }
     case "delete": {
       if (state) {
@@ -39,6 +40,7 @@ export default function profileReducer(
         );
         return updatedState;
       }
+      break;
     }
     case "current": {
       if (state) {
@@ -48,6 +50,7 @@ export default function profileReducer(
         };
         return updatedState;
       }
+      break;
     }
     case "load": {
       return payload;

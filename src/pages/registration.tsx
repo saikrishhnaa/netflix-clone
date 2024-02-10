@@ -4,7 +4,7 @@ import { useAuth } from "../common/auth";
 import { Link, useNavigate } from "react-router-dom";
 
 function Registration() {
-  const { signUp, user } = useAuth();
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   async function registerUser(event: React.SyntheticEvent) {

@@ -1,5 +1,3 @@
-import React from "react";
-
 function PageIndicator({
   pagesCount,
   currentPage,
@@ -15,7 +13,7 @@ function PageIndicator({
     >
       {Array(pagesCount)
         .fill(0)
-        .map((page, index) => (
+        .map((_page, index) => (
           <li
             className={`$ h-[2px] w-3 ${currentPage === index ? "bg-gray-100" : "bg-gray-600"}`}
             key={index}

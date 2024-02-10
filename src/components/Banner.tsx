@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MovieResponse,
   MovieResult,
@@ -9,7 +9,6 @@ import {
 import { ENDPOINT } from "../common/endpoints";
 import { createImageURL } from "../common/utils";
 import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
-import PlayCircleIcon from "@heroicons/react/16/solid/PlayIcon";
 import InfoIcon from "@heroicons/react/24/outline/InformationCircleIcon";
 import { PlayIcon } from "@heroicons/react/16/solid";
 import Loader from "./loader";

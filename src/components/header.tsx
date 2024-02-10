@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import netflixLogo from "../assets/Netflix_Logo_RGB.png";
 import { Link, NavLink } from "react-router-dom";
 import NotificationIcon from "@heroicons/react/24/outline/BellIcon";

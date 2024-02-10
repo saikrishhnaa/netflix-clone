@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createImageURL } from "../common/utils";
 import Modal from "./modal";
 import YouTube from "react-youtube";
-import { MovieVideoInfo, fetchRequest, fetchVideoInfo } from "../common/api";
-import { ENDPOINT } from "../common/endpoints";
+import { MovieVideoInfo, fetchVideoInfo } from "../common/api";
 
 import PlayIcon from "@heroicons/react/16/solid/PlayCircleIcon";
 import LikeIcon from "@heroicons/react/16/solid/HandThumbUpIcon";
@@ -27,7 +26,7 @@ function MovieCard({ poster_path, id, title, uid }: MovieCardProp) {
   const [position, setPosition] = useState<Position | null>(null);
   const [hidePoster, setHidePoster] = useState<boolean>(false);
 
-  async function onMouseEnter(event: any) {
+  async function onMouseEnter() {
     const [videoInfo] = await fetchVideoInfo(id.toString());
     const calculatedPosition = movieCardRef.current?.getBoundingClientRect();
     let top = (calculatedPosition?.top ?? 0) - 100;

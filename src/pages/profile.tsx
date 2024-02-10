@@ -1,4 +1,3 @@
-import React from "react";
 import Profiles from "../components/profiles";
 
 function Profile({ edit = false }: { edit?: boolean }) {

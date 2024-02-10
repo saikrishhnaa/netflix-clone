@@ -1,5 +1,3 @@
-import React from "react";
-
 function Loader() {
   return (
     <section className="absolute grid h-screen w-screen place-items-center">
@@ -15,7 +13,7 @@ function Loader() {
           cy="12"
           r="10"
           stroke="currentColor"
-          stroke-width="4"
+          strokeWidth="4"
         ></circle>
         <path
           className="opacity-75"

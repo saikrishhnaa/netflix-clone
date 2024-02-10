@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchRequest, MovieResponse, MovieResult } from "../common/api";
-import { ENDPOINT } from "../common/endpoints";
 import ChevronLeft from "@heroicons/react/24/outline/ChevronLeftIcon";
 import ChevronRight from "@heroicons/react/24/outline/ChevronRightIcon";
 import PageIndicator from "./page-indicator";
@@ -94,7 +93,7 @@ function ContentRows({ title, endpoint }: RowProp) {
           ref={sliderRef}
           className="flex gap-2 transition-transform duration-700 ease-linear"
         >
-          {rowData?.map((row, index) => {
+          {rowData?.map((row) => {
             return (
               <MovieCard
                 uid={`${row.id}-${title}`}

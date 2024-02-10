@@ -1,3 +1,4 @@
+import React, { lazy } from "react";
 import {
   Link,
   Navigate,
@@ -7,13 +8,13 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Layout from "./components/layout";
-import Browse from "./pages/browse";
-import Login from "./pages/login";
+const Layout = lazy(() => import("./components/layout"));
+const Browse = lazy(() => import("./pages/browse"));
+const Login = lazy(() => import("./pages/login"));
 import { AuthProvider, useAuth } from "./common/auth";
-import Profile from "./pages/profile";
+const Profile = lazy(() => import("./pages/profile"));
 import ProfilesProvider from "./common/profiles-context";
-import Registration from "./pages/registration";
+const Registration = lazy(() => import("./pages/registration"));
 import Loader from "./components/loader";
 
 function ProtectedRoute({ children }: { children: React.ReactElement }) {
@@ -70,8 +71,9 @@ function AppRouter() {
   return loading ? (
     <Loader />
   ) : (
-    // <Loader />
-    <RouterProvider router={router}></RouterProvider>
+    <React.Suspense fallback={<Loader />}>
+      <RouterProvider router={router}></RouterProvider>
+    </React.Suspense>
   );
 }
 

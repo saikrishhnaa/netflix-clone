@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import SearchIcon from "@heroicons/react/24/outline/MagnifyingGlassIcon";
 
 function SearchBar() {
@@ -32,7 +32,7 @@ function SearchBar() {
         <SearchIcon style={strokeWidth} />
       </button>
       <section
-        className={`${open ? "animate-slide-rtl w-full border border-white p-1" : "w-0"} flex items-center gap-2 bg-dark `}
+        className={`${open ? "w-full animate-slide-rtl border border-white p-1" : "w-0"} flex items-center gap-2 bg-dark `}
       >
         <button className="h-8 w-8">
           <SearchIcon style={strokeWidth} />
